@@ -592,11 +592,15 @@
 
 \def\tikz@lib@dv@add@#1#2{%
   \ifcsname tikz@lib@dv@#1\endcsname
-    \pgfutil@addto@macro#1{,#2}%
+    \expandafter\pgfutil@addto@macro\csname tikz@lib@dv@#1\endcsname{,#2}%
   \else
-    \expandafter\let\csname tikz@lib@dv@#1\endcsname\pgfutil@empty
+    \expandafter\def\csname tikz@lib@dv@#1\endcsname{#2}%
   \fi
 }%
+\tikz@lib@dv@add@{common}{}
+\tikz@lib@dv@add@{major}{}
+\tikz@lib@dv@add@{minor}{}
+\tikz@lib@dv@add@{subminor}{}
 
 \def\tikz@dv@lib@parse@scaling#1 at#2and #3 at#4\pgf@stop{%
   \pgfmathsetmacro{\tikz@dv@lib@min@at}{#2}
@@ -862,10 +866,8 @@
     % do nothing
     \else%
       \pgfkeysvalueof{#2/@compute at positions}%
-      \xdef\tikz@marshal{
-        major={\pgfkeysvalueof{/tikz/data visualization/major}},
-        minor={\pgfkeysvalueof{/tikz/data visualization/minor}},
-        subminor={\pgfkeysvalueof{/tikz/data visualization/subminor}}}
+      \xdef\tikz@marshal{%
+        \tikz@lib@dv@major,\tikz@lib@dv@minor,\tikz@lib@dv@subminor}%
     \fi
   }%
   \pgfkeyslet{#2/default #1 at}\tikz@marshal
@@ -1084,10 +1086,8 @@
         % Setup options
         \pgfkeysgetvalue{#2/ticks at}\tikz@lib@dv@ticks@at%
         \expandafter\tikzdatavisualizationset\expandafter{\tikz@lib@dv@settings}%
-        \pgfkeysgetvalue{/tikz/data visualization/common}\tikz@temp
-        \expandafter\tikzdatavisualizationset\expandafter{\tikz@temp}
-        \pgfkeysgetvalue{/tikz/data visualization/#1}\tikz@temp
-        \expandafter\tikzdatavisualizationset\expandafter{\tikz@temp}
+        \expandafter\tikzdatavisualizationset\expandafter{\tikz@lib@dv@common}
+        \expandafter\expandafter\expandafter\tikzdatavisualizationset\expandafter\expandafter\expandafter{\csname tikz@lib@dv@#1\endcsname}
         \edef\tikz@lib@dv@dir@axis{/tikz/data visualization/\pgfkeysvalueof{/tikz/data visualization/direction axis}}%
         % Ok, now it's time to draw the grid!
         \foreach \tikz@dv@grid@pos in \tikz@dv@at@list
