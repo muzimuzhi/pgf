@@ -45,6 +45,14 @@
   \csname @@end\expandafter\endcsname\expandafter\end%
 \fi
 
+% Now eTeX \ifdefined is avialable
+\ifdefined\PackageWarning
+  \def\pgfkeys@warning{\PackageWarning{pgfkeys}}%
+\else
+  \def\pgfkeys@warning#1{\immediate\write-1{%
+    Package pgfkeys Warning: #1 on input line \the\inputlineno.}}%
+\fi
+
 % Set a key to a value
 %
 % #1 = key
@@ -606,16 +614,31 @@
 % \pgfkeysdef{/my key}{\show#1}
 
 \long\def\pgfkeysdef#1#2{%
+  \pgfkeys@check@main@key{#1}%
   \long\def\pgfkeys@temp##1\pgfeov{#2}%
   \pgfkeyslet{#1/.@cmd}{\pgfkeys@temp}%
   \pgfkeyssetvalue{#1/.@body}{#2}%
 }
 \long\def\pgfkeysedef#1#2{%
+  \pgfkeys@check@main@key{#1}%
   \long\edef\pgfkeys@temp##1\pgfeov{#2}%
   \pgfkeyslet{#1/.@cmd}{\pgfkeys@temp}%
   \pgfkeyssetevalue{#1/.@body}{#2}%
 }
 
+% #1 = full key without subkey
+\def\pgfkeys@check@main@key#1{%
+  \pgfkeysifdefined{#1}
+    {\pgfkeys@error{Key `#1' already defined to store values}}
+    {}%
+}
+
+% #1 = full key without subkey
+\def\pgfkeys@check@cmd@subkey#1{%
+  \pgfkeysifdefined{#1/.@cmd}
+    {\pgfkeys@error{Key `#1' already defined to execute commands}}
+    {}%
+}
 
 % Define a key macro with multiple arguments (\def or \edef)
 %
@@ -633,6 +656,7 @@
 % \pgfkeysdefargs{/swap}{#1#2}{#2#1}
 
 \long\def\pgfkeysdefargs#1#2#3{%
+  \pgfkeys@check@main@key{#1}%
   \long\def\pgfkeys@temp#2\pgfeov{#3}%
   \pgfkeyslet{#1/.@cmd}{\pgfkeys@temp}%
   \pgfkeyssetvalue{#1/.@args}{#2\pgfeov}%
@@ -640,6 +664,7 @@
 }
 
 \long\def\pgfkeysedefargs#1#2#3{%
+  \pgfkeys@check@main@key{#1}%
   \long\edef\pgfkeys@temp#2\pgfeov{#3}%
   \pgfkeyslet{#1/.@cmd}{\pgfkeys@temp}%
   \pgfkeyssetvalue{#1/.@args}{#2\pgfeov}%
@@ -757,6 +782,7 @@
     \pgfkeyslet{\pgfkeyscurrentpath/.@@body}{\pgfkeys@global@temp}%
   }{%
     % support for \pgfkeysdefargs:
+      \pgfkeys@check@main@key{\pgfkeyscurrentpath}%
       \pgfkeyslet{\pgfkeyscurrentpath/.@cmd}{\pgfkeys@global@temp}%
   }%
   }%
@@ -774,6 +800,7 @@
     \def\pgf@temp{\pgfkeyssetvalue{\pgf@expanded@path/.@body}}%
     \expandafter\pgf@temp\expandafter{\pgfkeys@global@temp}%
     \expandafter\long\expandafter\def\expandafter\pgfkeys@temp\expandafter##\expandafter1\expandafter\pgfeov\expandafter{\pgfkeys@global@temp}%
+    \pgfkeys@check@main@key{\pgf@expanded@path}%
     \pgfkeyslet{\pgf@expanded@path/.@cmd}\pgfkeys@temp%
   }%
 }
@@ -799,7 +826,9 @@
 
 % Defining a value
 
-\pgfkeys{/handlers/.initial/.code=\pgfkeyssetvalue{\pgfkeyscurrentpath}{#1}}
+\pgfkeys{/handlers/.initial/.code=%
+  \pgfkeys@check@cmd@subkey{\pgfkeyscurrentpath}%
+  \pgfkeyssetvalue{\pgfkeyscurrentpath}{#1}}
 \pgfkeys{/handlers/.add/.code 2 args=\pgfkeysaddvalue{\pgfkeyscurrentpath}{#1}{#2}}
 \pgfkeys{/handlers/.prefix/.code=\pgfkeysaddvalue{\pgfkeyscurrentpath}{#1}{}}
 \pgfkeys{/handlers/.append/.code=\pgfkeysaddvalue{\pgfkeyscurrentpath}{}{#1}}
