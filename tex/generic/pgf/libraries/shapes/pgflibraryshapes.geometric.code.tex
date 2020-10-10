@@ -353,18 +353,15 @@
 
 \pgfkeys{/pgf/.cd,
     star points/.initial=5,
-    star point height/.initial=.5cm,
     star point height/.code={%
-        \def\pgf@lib@temp{#1}%
-        \pgfkeyslet{/pgf/star point height}{\pgf@lib@temp}%
+        \def\pgf@lib@shapes@starpointheight{#1}%
         \pgf@lib@shapes@starouterradiususesratiofalse%
     },
-    star point ratio/.initial=1.5,
     star point ratio/.code={%
-        \def\pgf@lib@temp{#1}%
-        \pgfkeyslet{/pgf/star point ratio}{\pgf@lib@temp}%
+        \def\pgf@lib@shapes@starpointratio{#1}%
         \pgf@lib@shapes@starouterradiususesratiotrue%
     },%
+    star point ratio=1.5,
     star rotate/.style={/pgf/shape border rotate=#1},% For compatibility with 1.18
 }%
 
@@ -404,10 +401,10 @@
         % Use the star point height or the star point ratio?
         %
         \ifpgf@lib@shapes@starouterradiususesratio%
-            \pgfmathparse{\pgfkeysvalueof{/pgf/star point ratio}}%
+            \pgfmathparse{\pgf@lib@shapes@starpointratio}%
             \expandafter\pgf@x\pgfmathresult\pgf@x%
         \else%
-            \pgfmathaddtolength\pgf@x{\pgfkeysvalueof{/pgf/star point height}}%
+            \pgfmathaddtolength\pgf@x{\pgf@lib@shapes@starpointheight}%
         \fi%
         \pgf@xc\pgf@x%
         %
@@ -430,7 +427,7 @@
         % ...using the star point ratio, or...
         %
         \ifpgf@lib@shapes@starouterradiususesratio%
-            \pgfmathreciprocal{\pgfkeysvalueof{/pgf/star point ratio}}%
+            \pgfmathreciprocal{\pgf@lib@shapes@starpointratio}%
             \pgf@xa\pgfmathresult\pgf@x\relax%
             \edef\innerradius{\the\pgf@xa}%
             \else%
@@ -438,7 +435,7 @@
                 % The star point height.
                 %
                 \pgf@xa\pgf@x\relax%
-                \pgfmathaddtolength\pgf@xa{-\pgfkeysvalueof{/pgf/star point height}}%
+                \pgfmathaddtolength\pgf@xa{-\pgf@lib@shapes@starpointheight}%
                 \edef\innerradius{\the\pgf@xa}%
             \fi%
         \fi%
