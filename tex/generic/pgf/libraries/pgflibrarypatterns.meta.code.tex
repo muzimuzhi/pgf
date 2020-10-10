@@ -60,8 +60,7 @@
         \def\expandafter#2\expandafter{#2}}%
 }%
 
-\def\pgf@pat@addto@macro#1#2{%
-  \expandafter\def\expandafter#1\expandafter{#1#2}}%
+\def\pgf@pat@addto@macro{\pgfutil@addto@macro}%
 
 \def\pgf@pat@process#1{%
   \pgf@process{#1}%

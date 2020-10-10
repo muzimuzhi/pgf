@@ -94,6 +94,9 @@
     \pgfutil@toks@\expandafter{#1#2}%
     \xdef#1{\the\pgfutil@toks@}%
  \endgroup}
+\long\def\pgfutil@addto@macro#1#2{%
+  \edef#1{\unexpanded\expandafter{#1#2}}
+}
 \newif\ifpgfutil@tempswa
 \newif\ifpgfutil@tempswb
 

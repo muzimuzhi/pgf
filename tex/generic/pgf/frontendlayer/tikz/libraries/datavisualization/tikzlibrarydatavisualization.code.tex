@@ -549,10 +549,6 @@
   padded/.style={low=padded min,high=padded max},
   tick length/.style={low={-#1},high={#1}},
   % General tick and grid keys:
-  common/.initial=,
-  major/.initial=,
-  minor/.initial=,
-  subminor/.initial=,
   @setup at setters/.style={
     common/.code=\tikz@lib@dv@add@{common}{##1},
     major/.code=\tikz@lib@dv@add@{major}{##1},
@@ -594,7 +590,13 @@
     \expandafter\pgfkeysalso\expandafter{\tikz@lib@dv@ticks@at}},
 }%
 
-\def\tikz@lib@dv@add@#1#2{\pgfkeysaddvalue{/tikz/data visualization/#1}{}{,#2}}%
+\def\tikz@lib@dv@add@#1#2{%
+  \ifcsname tikz@lib@dv@#1\endcsname
+    \pgfutil@addto@macro#1{,#2}%
+  \else
+    \expandafter\let\csname tikz@lib@dv@#1\endcsname\pgfutil@empty
+  \fi
+}%
 
 \def\tikz@dv@lib@parse@scaling#1 at#2and #3 at#4\pgf@stop{%
   \pgfmathsetmacro{\tikz@dv@lib@min@at}{#2}
@@ -890,10 +892,8 @@
       \scope[/tikz/data visualization/.cd,every ticks/.try,every #1 ticks/.try,#3]%
         % Setup options
         \expandafter\tikzdatavisualizationset\expandafter{\tikz@lib@dv@settings}%
-        \pgfkeysgetvalue{/tikz/data visualization/common}\tikz@temp
-        \expandafter\tikzdatavisualizationset\expandafter{\tikz@temp}
-        \pgfkeysgetvalue{/tikz/data visualization/#1}\tikz@temp
-        \expandafter\tikzdatavisualizationset\expandafter{\tikz@temp}
+        \expandafter\tikzdatavisualizationset\expandafter{\tikz@lib@dv@common}
+        \expandafter\expandafter\expandafter\tikzdatavisualizationset\expandafter\expandafter\expandafter{\csname tikz@lib@dv@#1\endcsname}
         \pgfkeysgetvalue{/tikz/data visualization/\pgfkeysvalueof{/tikz/data visualization/direction axis}/scaling mapper}\pgf@dv@tick@dir@mapper
         % Ok, now it's time to draw the ticks!
         \foreach \tikz@dv@tick@pos[count=\tikz@dv@tick@count] in \tikz@dv@at@list
