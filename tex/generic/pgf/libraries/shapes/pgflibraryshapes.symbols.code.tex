@@ -586,11 +586,7 @@
 %
 \pgfkeys{/pgf/.cd,
   aspect/.code={\pgfsetshapeaspect{#1}},% this for tikz...
-  shape aspect/.initial=1,% but this is consistent with other pgfset stuff.
-  shape aspect/.code={%
-    \pgfkeys{/pgf/aspect=#1}%
-    \pgfkeyssetvalue{/pgf/shape aspect}{#1}
-  }%
+  shape aspect/.style={/pgf/aspect=#1}%
 }%
 
 \def\pgfsetshapeaspect#1{%
