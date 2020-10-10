@@ -45,6 +45,14 @@
   \csname @@end\expandafter\endcsname\expandafter\end%
 \fi
 
+% Now eTeX \ifdefined is avialable
+\ifdefined\PackageWarning
+  \def\pgfkeys@warning{\PackageWarning{pgfkeys}}%
+\else
+  \def\pgfkeys@warning#1{\immediate\write-1{%
+    Package pgfkeys Warning: #1 on input line \the\inputlineno.}}%
+\fi
+
 % Set a key to a value
 %
 % #1 = key
@@ -351,7 +359,10 @@
 
 \def\pgfkeys@case@one{%
   \pgfkeysifdefined{\pgfkeyscurrentkey/.@cmd}%
-  {\pgfkeysgetvalue{\pgfkeyscurrentkey/.@cmd}{\pgfkeys@code}%
+  {\pgfkeysifdefined{\pgfkeyscurrentkey}
+     {\pgfkeys@error{Key `\pgfkeyscurrentkey' is defined both by `/.initial' and by `/.code' variants}}
+     {}%
+   \pgfkeysgetvalue{\pgfkeyscurrentkey/.@cmd}{\pgfkeys@code}%
    \expandafter\pgfkeys@code\pgfkeyscurrentvalue\pgfeov}
   {\pgfkeys@case@two}%
 }
