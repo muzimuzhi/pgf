@@ -2309,7 +2309,8 @@
   counterclockwise/.default=\tikzgraphVnum,
   chain polar shift/.initial={(0:1cm)},
   group polar shift/.initial={(60:0)},
-  radius/.initial=1cm,
+  radius/.store in=\tikz@lib@graph@radius,
+  radius=1cm,
   phase/.initial=90,
 }%
 
@@ -2324,7 +2325,7 @@
   \pgf@process{\pgfpointscale{\pgfkeysvalueof{/tikz/graphs/placement/depth}}{}}%
   \advance\pgf@xa by\pgf@x%
   \advance\pgf@ya by\pgf@y%
-  \pgfmathparse{\pgfkeysvalueof{/tikz/graphs/radius}}%
+  \pgfmathparse{\tikz@lib@graph@radius}%
   \advance\pgf@ya by\pgfmathresult pt%
   \pgfmathsetmacro\tikz@temp{\the\pgf@xa+\pgfkeysvalueof{/tikz/graphs/phase}}%
   \edef\tikz@lib@graph@shift{(\tikz@temp:\the\pgf@ya)}
