@@ -2761,7 +2761,7 @@ work together in perfect harmony.
 %
 \end{key}
 
-The following keys place nodes in a $N\times M$ grid.
+The following key place nodes in a $N\times M$ grid.
 %
 \begin{key}{/tikz/graphs/grid placement}
     This key works similar to |Cartesian placement|. As for that placement
@@ -3317,7 +3317,7 @@ following two keys:
     This graph consists just of $n$ unconnected vertices. The following key is
     used to specify the set of these vertices:
     %
-    \begin{key}{/tikz/graphs/V=\marg{list of vertices}}
+    \begin{key}{/tikz/graphs/V=\marg{list of vertices} (initially 1)}
         Sets a list of vertex names for use with graphs like |subgraph I_n| and
         also other graphs. This list is available in the macro |\tikzgraphV|.
         The number of elements of this list is available in |\tikzgraphVnum|.
@@ -3364,7 +3364,7 @@ following two keys:
         Same as for |name shore V|.
     \end{stylekey}
     %
-    \begin{key}{/tikz/graphs/W=\marg{list of vertices}}
+    \begin{key}{/tikz/graphs/W=\marg{list of vertices}  (initially 1)}
         Sets the list of vertices for the |W| set. The elements and their
         number are available in the macros |\tikzgraphW| and |\tikzgraphWnum|,
         respectively.
@@ -3456,6 +3456,20 @@ following two keys:
 \tikz \graph [grid placement] { subgraph Grid_n [n=4] };
 \end{codeexample}
   \end{key}
+\end{graph}
+
+\begin{graph}{subgraph G\_np}
+    This graph randomly connects vertices in |V|. Each edge is included with
+    probability |p| independent from every other edge.
+    %
+    \begin{key}{/tikz/graphs/p=\meta{number} (initially 0.5)}
+        The probability parameter.
+    \end{key}
+    %
+\begin{codeexample}[preamble={\usetikzlibrary{graphs.standard}}]
+\tikz \graph [clockwise, n=5] { subgraph I_n; subgraph G_np };
+\end{codeexample}
+    %
 \end{graph}
 
 % TODO: Implement the Grid_nm subgraph described here:
