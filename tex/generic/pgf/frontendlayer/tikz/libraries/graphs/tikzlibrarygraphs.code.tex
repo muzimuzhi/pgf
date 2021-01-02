@@ -1365,6 +1365,14 @@
   declare/.code 2 args={\expandafter\def\csname tikz@lib@graph@def@#1\endcsname{\tikz@lib@graph@do@graph{#2}}}%
 }%
 
+% These macros will be overwritten in lib "graphs.standard"
+\pgfutil@for\pgf@temp:=I_n,I_nm,K_n,K_nm,P_n,C_n,Grid_n,G_np\do{
+  \expandafter\edef\csname tikz@lib@graph@def@subgraph \pgf@temp\endcsname{%
+    \noexpand\tikzerror{You need to say \string\usetikzlibrary{graphs.standard}
+      to use graph macro ``subgraph \detokenize\expandafter{\pgf@temp}''}%
+  }
+}
+
 \def\tikz@lib@graph@handle@graph#1{%
   \begingroup%
     \let\tikz@lib@graph@node@list\pgfutil@empty%
