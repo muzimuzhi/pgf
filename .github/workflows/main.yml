@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        engine: [luatex, dvisvgm, dvipdfm, dvipdfmx, dvips, pdftex, tex4ht, xetex]
+        engine: [luatex]
 
     steps:
     - uses: actions/checkout@v2
@@ -110,7 +110,9 @@ jobs:
       if: matrix.engine == 'luatex'
       with:
         name: pgfmanual
-        path: doc/generic/pgf/version-for-${{ matrix.engine }}/en/pgfmanual.pdf
+        path: |
+          doc/generic/pgf/version-for-${{ matrix.engine }}/en/pgfmanual.pdf
+          doc/generic/pgf/version-for-${{ matrix.engine }}/en/pgfmanual.log
 
     - name: "ZIP: Build"
       if: matrix.engine == 'luatex'
