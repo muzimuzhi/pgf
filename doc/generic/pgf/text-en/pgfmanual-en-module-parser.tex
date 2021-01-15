@@ -80,10 +80,10 @@ There are \the\mycount\ a's.
   \TeX\ command |\meaning| to the given character. For instance, |\meaning a|
   yields |the letter a|, while |\meaning 1| yields |the character 1|. A space
   yields |blank space  |. Alternatively you can give the symbol you want without
-  surrounding it in braces. So both
-  |\pgfparserdef{myparser}{initial}{the letter a}{foo}|
-  and
-  |\pgfparserdef{myparser}{initial}a{foo}|
+  surrounding it in braces. So both\par
+  \noindent\hskip10pt|\pgfparserdef{myparser}{initial}{the letter a}{foo}|\par
+  and\par
+  \noindent\hskip10pt|\pgfparserdef{myparser}{initial}a{foo}|\par
   define an \meta{action} for |the letter a|. This short form works for most
   tokens, but not for a space (in which case you can use
   |\pgfparserdef{myparser}{initial}{blank space}{foo}|), and opening braces
