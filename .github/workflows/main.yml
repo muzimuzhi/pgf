@@ -108,7 +108,9 @@ jobs:
       run: texlua build.lua manual ${{ matrix.engine }}
 
     - name: Analyse the log
-      run: texloganalyser -nhv doc/generic/pgf/version-for-${{ matrix.engine }}/en/pgfmanual.log
+      run: |
+        # show overfull h- and v-boxes only
+        texloganalyser -hv doc/generic/pgf/version-for-${{ matrix.engine }}/en/pgfmanual.log
 
     - uses: actions/upload-artifact@v2
       if: matrix.engine == 'luatex'
