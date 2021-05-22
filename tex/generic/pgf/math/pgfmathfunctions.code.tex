@@ -14,9 +14,19 @@
 % #3 - the code for the function.
 %
 % Use \pgfmathdeclarefunction* to force a redefinition if the function exists already.
-\def\pgfmathdeclarefunction{\pgfmath@ifnextchar*\pgfmathdeclarefunction@force\pgfmathdeclarefunction@check}
+\def\pgfmathdeclarefunction{%
+  \let\pgfmath@laziness\undefined%
+  \pgfmathdeclarefunction@body
+}
+\def\pgfmathdeclarefunction@body{%
+  \pgfmath@ifnextchar*\pgfmathdeclarefunction@force\pgfmathdeclarefunction@check
+}
 \def\pgfmathdeclarefunction@check#1{%
-    \expandafter\ifx\csname pgfmath@function@#1\endcsname\relax\else%
+    \expandafter\ifx\csname pgfmath@function@#1\endcsname\relax
+        \ifcsname pgfmath#1\endcsname
+            \pgfmath@error{The control sequence `\string\pgfmath#1` already exists. Choose another function name}{}%
+        \fi
+    \else%
         \pgfmath@error{The function `#1' already exists}{}%
     \fi%
     \pgfmath@declarefunction{#1}%
@@ -39,6 +49,12 @@
     \pgfmath@namedef{pgfmath@operation@#1@arity}{#2}%
     \pgfmath@namedef{pgfmath@operation@#1@infix}{#1}%
     \pgfmath@namedef{pgfmath@operation@#1@precedence}{1000}%
+    % flag \pgfmath@operator@<name>@laziness is defined only if <name> is lazy
+    \pgfmath@iflazy{%
+      \csname pgfmath@operation@#1@laziness\endcsname
+    }{%
+      \expandafter\let\csname pgfmath@operation@#1@laziness\endcsname\undefined
+    }%
     \expandafter\ifx\csname pgfmath@operation@#1@arity\endcsname\pgfmath@dots%
         \pgfmath@namedef{pgfmath@operation@#1@arity}{1}%
     \else%
@@ -67,7 +83,9 @@
         \def#1{#2}%
         \def\pgfmath@@head{\def#2}%
     \or
-        \def#1##1{\pgfmathparse{##1}\expandafter#2\expandafter{\pgfmathresult}}%
+        \pgfmath@iflazy
+            {\def#1{#2}}
+            {\def#1##1{\pgfmathparse{##1}\expandafter#2\expandafter{\pgfmathresult}}}%
         \def\pgfmath@@head{\def#2####1}%
     \else%
         \pgfmath@toks={}%
@@ -77,27 +95,32 @@
             \expandafter\pgfmath@addto@toks\expandafter{\pgfmath@char@hash}%
             \expandafter\pgfmath@addto@toks\expandafter{\pgfmathcounter}%
         \repeatpgfmathloop%
-        \edef\pgfmath@head{\noexpand\def\noexpand#1\the\pgfmath@toks}%
-        \edef\pgfmath@@head{\noexpand\def\noexpand#2\the\pgfmath@toks}%
-        \pgfmath@toks={}%
-        \def\pgfmath@arguments{}%
-        \pgfmathloop%
-        \ifnum\pgfmathcounter>#3\relax%
-        \else%
-            \pgfmath@addto@toks{\pgfmathparse}%
-            \expandafter\expandafter\expandafter\pgfmath@addto@toks%
-                \expandafter\expandafter\expandafter{\expandafter\expandafter\expandafter%
-                    {\expandafter\pgfmath@char@hash\pgfmathcounter}}%
-            \pgfmath@addto@toks{\let}%
-            \expandafter\pgfmath@addto@toks\expandafter{%
-                \csname pgfmath@argument@\pgfmathcounter\endcsname=\pgfmathresult}%
-            \expandafter\expandafter\expandafter\def\expandafter\expandafter\expandafter%
-                \pgfmath@arguments\expandafter\expandafter\expandafter{\expandafter%
-                    \pgfmath@arguments\expandafter{\csname pgfmath@argument@\pgfmathcounter\endcsname}}%
-        \repeatpgfmathloop%
-        \expandafter\pgfmath@addto@toks\expandafter{\expandafter#2\pgfmath@arguments}%
-        \edef\pgfmath@body{{\the\pgfmath@toks}}%
-        \expandafter\pgfmath@head\pgfmath@body%
+        \pgfmath@iflazy{%
+            \def#1{#2}%
+            \edef\pgfmath@@head{\noexpand\def\noexpand#2\the\pgfmath@toks}%
+        }{%
+            \edef\pgfmath@head{\noexpand\def\noexpand#1\the\pgfmath@toks}%
+            \edef\pgfmath@@head{\noexpand\def\noexpand#2\the\pgfmath@toks}%
+            \pgfmath@toks={}%
+            \def\pgfmath@arguments{}%
+            \pgfmathloop%
+            \ifnum\pgfmathcounter>#3\relax%
+            \else%
+                \pgfmath@addto@toks{\pgfmathparse}%
+                \expandafter\expandafter\expandafter\pgfmath@addto@toks%
+                    \expandafter\expandafter\expandafter{\expandafter\expandafter\expandafter%
+                        {\expandafter\pgfmath@char@hash\pgfmathcounter}}%
+                \pgfmath@addto@toks{\let}%
+                \expandafter\pgfmath@addto@toks\expandafter{%
+                    \csname pgfmath@argument@\pgfmathcounter\endcsname=\pgfmathresult}%
+                \expandafter\expandafter\expandafter\def\expandafter\expandafter\expandafter%
+                    \pgfmath@arguments\expandafter\expandafter\expandafter{\expandafter%
+                        \pgfmath@arguments\expandafter{\csname pgfmath@argument@\pgfmathcounter\endcsname}}%
+            \repeatpgfmathloop%
+            \expandafter\pgfmath@addto@toks\expandafter{\expandafter#2\pgfmath@arguments}%
+            \edef\pgfmath@body{{\the\pgfmath@toks}}%
+            \expandafter\pgfmath@head\pgfmath@body%
+        }%
     \fi%
     \pgfmath@@head{#4}%
 }
@@ -105,6 +128,23 @@
 \def\pgfmath@addto@toks#1{%
     \edef\pgfmath@toks@expanded{\the\pgfmath@toks}%
     \expandafter\pgfmath@toks\expandafter{\pgfmath@toks@expanded#1}}
+
+\def\pgfmath@iflazy{%
+  \ifdefined\pgfmath@laziness
+    \expandafter\pgfmath@firstoftwo
+  \else
+    \expandafter\pgfmath@secondoftwo
+  \fi
+}
+
+% Declare a LAZY function for the parser.
+%
+% Works much like \pgfmathdeclarefunction except \pgfmath<name>@ will accept
+% the same, uncalculated arguments as \pgfmath<name>.
+\def\pgfmathdeclarelazyfunction{%
+  \let\pgfmath@laziness\pgfmath@empty
+  \pgfmathdeclarefunction@body
+}
 
 % Key for declaring local functions.
 %
