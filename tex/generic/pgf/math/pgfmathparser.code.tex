@@ -721,7 +721,7 @@
       % Not a single character operator.
       \pgfmath@error{Unknown operator `\pgfmath@token' or `\pgfmath@token\pgfmath@token@next'}{}%
       \def\pgfmathresult{0}%
-    \let\pgfmath@parse@next=\pgfmath@parse@end%
+      \let\pgfmath@parse@next=\pgfmath@parse@end%
     \else%
       \expandafter\pgfmath@operation@process\expandafter{\pgfmath@token}%
       \ifx\pgfmath@token\pgfmath@text@@%
@@ -877,20 +877,28 @@
 
 % Declare an operator for the parser.
 %
+% #1 - the name of the operator, usually one or two characters
+% #2 - the name of the function to be accosicated 
+% #3 - arity
+% #4 - one of "prefix", "infix", or "postfix"
+% #5 - precedence
+%
 % It is not recommended that new operators be created as
 % the parser is not fully robust for arbitrary operators.
 %
 \def\pgfmathdeclareoperator#1#2#3#4#5{%
+  % \string could only detokenize a single token
+  \edef\pgfmath@temp{\detokenize{#1}}%
   \ifx\pgfmath@operatorlist\pgfutil@empty
-    \edef\pgfmath@operatorlist{{\string#1}}%
+    \edef\pgfmath@operatorlist{{\pgfmath@temp}}%
   \else
-    \edef\pgfmath@operatorlist{\pgfmath@operatorlist,{\string#1}}%
+    \edef\pgfmath@operatorlist{\pgfmath@operatorlist,{\pgfmath@temp}}%
   \fi
-  \pgfmath@namedef{pgfmath@operator@\string#1}{#1}%
-  \pgfmath@namedef{pgfmath@operation@\string#1@name}{#2}%
-  \pgfmath@namedef{pgfmath@operation@\string#1@arity}{#3}%
-  \pgfmath@namedef{pgfmath@operation@\string#1@#4}{#1}%
-  \pgfmath@namedef{pgfmath@operation@\string#1@precedence}{#5}%
+  \pgfmath@namedef{pgfmath@operator@\pgfmath@temp}{#1}%
+  \pgfmath@namedef{pgfmath@operation@\pgfmath@temp @name}{#2}%
+  \pgfmath@namedef{pgfmath@operation@\pgfmath@temp @arity}{#3}%
+  \pgfmath@namedef{pgfmath@operation@\pgfmath@temp @#4}{#1}%
+  \pgfmath@namedef{pgfmath@operation@\pgfmath@temp @precedence}{#5}%
 }
 
 \def\pgfmath@operatorlist{}
