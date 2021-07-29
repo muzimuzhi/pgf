@@ -3753,17 +3753,8 @@
   \pgfutil@ifnextchar a{\tikz@@coordinate@at[#1](#2)}
   {\tikz@fig ode[shape=coordinate,#1](#2){}}}%
 \def\tikz@@coordinate@at[#1](#2)a{%
-  \pgfutil@ifnextchar t{\tikz@@coordinate@@at[#1](#2)a}%
+  \pgfutil@ifnextchar t{\tikz@fig ode[shape=coordinate,#1](#2)\pgfextra{\def\tikz@node@content{}}a}%
   {\tikz@fig ode[shape=coordinate,#1](#2){}a}%
-}%
-\def\tikz@@coordinate@@at[#1](#2)at#3({%
-  \def\tikz@coordinate@caller{\tikz@fig ode[shape=coordinate,#1](#2)at}%
-  \tikz@scan@one@point\tikz@@coordinate@at@math(%
-}%
-\def\tikz@@coordinate@at@math#1{%
-  \pgf@process{#1}%
-  \edef\tikz@temp{(\the\pgf@x,\the\pgf@y)}%
-  \expandafter\tikz@coordinate@caller\tikz@temp{}%
 }%
 
 
@@ -3819,23 +3810,36 @@
     {\pgfutil@ifnextchar[{\tikz@fig@scan@options}%
       {\pgfutil@ifnextchar:{\tikz@fig@scan@animation}%
         {\pgfutil@ifnextchar\bgroup{\tikz@fig@main}%
-          {\tikzerror{A node must have a (possibly empty) label text}%
-            \tikz@fig@main{}}}}}}}%}}%
+          {\pgfutil@ifnextchar\pgfextra{\tikz@fig@scan@extra}
+            {\tikzerror{A node must have a (possibly empty) label text}%
+              \tikz@fig@main{}}}}}}}}%}}%
 \def\tikz@fig@scan@at at{%
   \tikz@scan@one@point\tikz@@fig@scan@at}%
 \def\tikz@@fig@scan@at#1{%
-  \def\tikz@node@at{#1}\tikz@@scan@fig}%
+  \def\tikz@node@at{#1}%
+  % for coordinate
+  \tikz@fig@quick@end}%
 \def\tikz@fig@scan@name(#1){%
     \pgfkeysvalueof{/tikz/name/.@cmd}#1\pgfeov% CF : this is now ALWAYS consistent with 'name=' option; allows overrides.
     \tikz@@scan@fig}%
 % make it \long to allow \par in "pin" options etc:
-\long\def\tikz@fig@scan@options[#1]{\iftikz@node@is@pic\tikz@enable@pic@quotes\else\tikz@enable@node@quotes\fi\tikzset{#1}\ifx\tikz@node@content\relax\expandafter\tikz@@scan@fig\else\tikz@expand@node@contents\fi}%
+\long\def\tikz@fig@scan@options[#1]{\iftikz@node@is@pic\tikz@enable@pic@quotes\else\tikz@enable@node@quotes\fi\tikzset{#1}\tikz@fig@quick@end}%
+\def\tikz@fig@quick@end{%
+  \ifx\tikz@node@content\relax
+    \expandafter\tikz@@scan@fig
+  \else
+    \expandafter\tikz@expand@node@contents
+  \fi
+}
 \def\tikz@fig@scan@animation:#1=#2{\tikzset{animate={myself:{#1}={#2}}}\tikz@@scan@fig}%
 \def\tikz@expand@node@contents{%
   \expandafter\tikz@@scan@fig\expandafter{\tikz@node@content}%
 }%
 \let\tikz@node@reset@hook=\pgfutil@empty%
 \let\tikz@node@begin@hook=\pgfutil@empty%
+\def\tikz@fig@scan@extra\pgfextra{\pgfutil@ifnextchar\bgroup\tikz@@fig@scan@extra\tikz@@@fig@scan@extra}
+\def\tikz@@fig@scan@extra#1{#1\tikz@@scan@fig}
+\def\tikz@@@fig@scan@extra#1\endpgfextra{#1\tikz@@scan@fig}
 \def\tikz@fig@main{%
   \iftikz@node@is@pic%
     \tikz@node@is@picfalse%
