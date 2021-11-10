@@ -128,24 +128,24 @@
 \def\pgfprofilenewforcommand@[#1]#2#3{%
     \def\pgfprofile@temp{#3}%
     \ifx\pgfprofile@temp\pgfutil@empty
-        \pgfprofilenewforcommandpattern[#1]{#2}{<autocheck>}{}%
+        \pgfprofilenewforcommandpattern[{#1}]{#2}{<autocheck>}{}%
     \else
         \ifcase#3\relax
-            \pgfprofilenewforcommandpattern[#1]{#2}{}{}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{}{}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1}{{##1}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1}{{##1}}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1##2}{{##1}{##2}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1##2}{{##1}{##2}}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1##2##3}{{##1}{##2}{##3}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1##2##3}{{##1}{##2}{##3}}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1##2##3##4}{{##1}{##2}{##3}{##4}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1##2##3##4}{{##1}{##2}{##3}{##4}}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1##2##3##4##5}{{##1}{##2}{##3}{##4}{##5}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1##2##3##4##5}{{##1}{##2}{##3}{##4}{##5}}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1##2##3##4##5##6}{{##1}{##2}{##3}{##4}{##5}{##6}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1##2##3##4##5##6}{{##1}{##2}{##3}{##4}{##5}{##6}}%
         \or
-            \pgfprofilenewforcommandpattern[#1]{#2}{##1##2##3##4##5##6##7}{{##1}{##2}{##3}{##4}{##5}{##6}{##7}}%
+            \pgfprofilenewforcommandpattern[{#1}]{#2}{##1##2##3##4##5##6##7}{{##1}{##2}{##3}{##4}{##5}{##6}{##7}}%
         \else
             \pgferror{library 'profiler' can't replace control sequences with '#3' arguments automatically, sorry.}{}%
         \fi

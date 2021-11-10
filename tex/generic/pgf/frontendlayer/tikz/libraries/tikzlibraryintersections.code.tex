@@ -142,7 +142,7 @@
 
 \def\tikz@intersect@name@parse{\pgfutil@ifnextchar[\tikz@intersect@name@parse@opt{\tikz@intersect@name@parse@opt[]}}%}
 \def\tikz@intersect@name@parse@opt[#1]#2\pgf@stop{%
-  \coordinate [#1] (#2) at (\tikz@intersect@@name-\tikz@intersection@count);
+  \coordinate [{#1}] (#2) at (\tikz@intersect@@name-\tikz@intersection@count);
 }%
 
 \endinput

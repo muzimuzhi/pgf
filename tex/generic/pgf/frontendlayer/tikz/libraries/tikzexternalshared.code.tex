@@ -357,7 +357,7 @@
 \def\tikzexternalize@opt[#1]{%
     \pgfutil@ifnextchar\bgroup{%
         \tikzexternal@auto@detect@jobnamefalse
-        \tikzexternalize@opt@withname[#1]%
+        \tikzexternalize@opt@withname[{#1}]%
     }{%
         \tikzexternal@auto@detect@jobnametrue
         \pgfutil@ifundefined{tikzexternalrealjob}{%
@@ -365,7 +365,7 @@
             % Assume we are currently *not* externalizing.
             \let\tikzexternalrealjob=\jobname
         }{}%
-        \def\pgf@tempa{\tikzexternalize@opt@withname[#1]}%
+        \def\pgf@tempa{\tikzexternalize@opt@withname[{#1}]}%
         \expandafter\pgf@tempa\expandafter{\tikzexternalrealjob}%
     }%
 }%

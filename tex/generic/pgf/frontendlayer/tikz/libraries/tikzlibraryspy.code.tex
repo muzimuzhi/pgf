@@ -71,7 +71,7 @@
   \pgfutil@ifnextchar[{\tikz@lib@spy@parse@opt}{\tikz@lib@spy@parse@opt[]}%]
 }%
 \def\tikz@lib@spy@parse@opt[#1]{
-  \pgfutil@ifnextchar x{\tikz@lib@spy@parse@opta[#1]}{\tikz@lib@spy@parse@opta[#1]}%]
+  \pgfutil@ifnextchar x{\tikz@lib@spy@parse@opta[{#1}]}{\tikz@lib@spy@parse@opta[{#1}]}%]
 }%
 \def\tikz@lib@spy@parse@opta[#1]on#2in node#3;{%
   \pgfutil@g@addto@macro\tikz@lib@spy@collection{\tikz@lib@spy@do{#1}{#2}{#3}}%

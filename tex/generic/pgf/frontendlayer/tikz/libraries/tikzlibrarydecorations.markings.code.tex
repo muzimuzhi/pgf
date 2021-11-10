@@ -15,7 +15,7 @@
   \pgfutil@ifnextchar[{\tikz@lib@dec@doarrowhead}{\tikz@lib@dec@doarrowhead[]}%]
 }%
 \def\tikz@lib@dec@doarrowhead[#1]#2{%
-  \scope[#1]
+  \scope[{#1}]
     \pgf@lib@dec@arrowhead{1}{#2}%
   \endscope
 }%
@@ -23,7 +23,7 @@
   \pgfutil@ifnextchar[{\tikz@lib@dec@doarrowheadrev}{\tikz@lib@dec@doarrowheadrev[]}%]
 }%
 \def\tikz@lib@dec@doarrowheadrev[#1]#2{%
-  \scope[#1]
+  \scope[{#1}]
     \pgf@lib@dec@arrowhead{-1}{#2}%
   \endscope
 }%

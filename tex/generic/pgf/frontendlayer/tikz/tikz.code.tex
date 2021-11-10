@@ -2717,7 +2717,7 @@
 \def\tikz@collect@coordinate@onpath@#1oordinate{%
   \pgfutil@ifnextchar[{\tikz@@collect@coordinate@opt#1}{\tikz@@collect@coordinate@opt#1[]}}%}%
 \def\tikz@@collect@coordinate@opt#1[#2]{%
-  \pgfutil@ifnextchar({\tikz@@collect@coordinate#1[#2]}{%
+  \pgfutil@ifnextchar({\tikz@@collect@coordinate#1[{#2}]}{%
   \tikz@collect@label@onpath#1node[shape=coordinate,#2]{}}}%}%
 \def\tikz@@collect@coordinate#1[#2](#3){%
   \tikz@collect@label@onpath#1node[shape=coordinate,#2](#3){}}%
@@ -3748,13 +3748,13 @@
 \def\tikz@coordinate ordinate{%
   \pgfutil@ifnextchar[{\tikz@@coordinate@opt}{\tikz@@coordinate@opt[]}}%
 \def\tikz@@coordinate@opt[#1]{%
-  \pgfutil@ifnextchar({\tikz@@coordinate[#1]}
+  \pgfutil@ifnextchar({\tikz@@coordinate[{#1}]}
   {\tikz@fig ode[shape=coordinate,#1]{}}}%}%
 \def\tikz@@coordinate[#1](#2){%
-  \pgfutil@ifnextchar a{\tikz@@coordinate@at[#1](#2)}
+  \pgfutil@ifnextchar a{\tikz@@coordinate@at[{#1}](#2)}
   {\tikz@fig ode[shape=coordinate,#1](#2){}}}%
 \def\tikz@@coordinate@at[#1](#2)a{%
-  \pgfutil@ifnextchar t{\tikz@@coordinate@@at[#1](#2)a}%
+  \pgfutil@ifnextchar t{\tikz@@coordinate@@at[{#1}](#2)a}%
   {\tikz@fig ode[shape=coordinate,#1](#2){}a}%
 }%
 \def\tikz@@coordinate@@at[#1](#2)at#3({%
@@ -4268,7 +4268,7 @@
 \def\tikz@node@also lso{\pgfutil@ifnextchar[\tikz@node@also@opt{\tikz@node@also@opt[]}}%
 \def\tikz@node@also@opt[#1]{
   \pgfutil@ifnextchar(%)
-  {\tikz@node@also@opt@cont[#1]}%
+  {\tikz@node@also@opt@cont[{#1}]}%
   {\tikzerror{Syntax error in node also: ``('' expected.}%
     \tikz@scan@next@command}%
 }%
@@ -4555,10 +4555,10 @@
 \def\tikz@collect@children{\pgfutil@ifnextchar c{\tikz@collect@children@cchar}{\tikz@children@collected}}%
 \def\tikz@collect@children@cchar c{\pgfutil@ifnextchar h{\tikz@collect@child}{\tikz@children@collected c}}%
 \def\tikz@collect@child hild{\pgfutil@ifnextchar[{\tikz@collect@childA}{\tikz@collect@childA[]}}%}%
-\def\tikz@collect@childA[#1]{\pgfutil@ifnextchar f{\tikz@collect@children@foreach[#1]}{\tikz@collect@childB[#1]}}%
+\def\tikz@collect@childA[#1]{\pgfutil@ifnextchar f{\tikz@collect@children@foreach[{#1}]}{\tikz@collect@childB[{#1}]}}%
 \def\tikz@collect@childB[#1]{%
   \advance\tikznumberofchildren by1\relax
-  \expandafter\def\expandafter\tikz@children@list\expandafter{\tikz@children@list \tikz@childnode[#1]}%
+  \expandafter\def\expandafter\tikz@children@list\expandafter{\tikz@children@list \tikz@childnode[{#1}]}%
   \pgfutil@ifnextchar\bgroup{\tikz@collect@child@code}{\tikz@collect@child@code{}}}%
 \def\tikz@collect@child@code#1{%
   \expandafter\def\expandafter\tikz@children@list\expandafter{\tikz@children@list{#1}}%
@@ -4568,7 +4568,7 @@
   \pgfutil@ifnextchar\bgroup{\tikz@collect@children@foreachA{#1}{#2}{#3}}{\tikz@collect@children@foreachA{#1}{#2}{#3}{}}}%
 \def\tikz@collect@children@foreachA#1#2#3#4{%
   \expandafter\def\expandafter\tikz@children@list\expandafter
-    {\tikz@children@list\tikz@childrennodes[#1]{#2}{#3}{#4}}%
+    {\tikz@children@list\tikz@childrennodes[{#1}]{#2}{#3}{#4}}%
   \c@pgf@counta=\tikznumberofchildren%
   \foreach#2in{#3}%
   {%

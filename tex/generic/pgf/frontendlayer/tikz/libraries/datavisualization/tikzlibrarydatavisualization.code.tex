@@ -277,13 +277,13 @@
 \def\tikz@lib@dv@handle@info@noprime{%
   \pgfutil@ifnextchar[{\tikz@lib@dv@handle@info@block@opt}{\tikz@lib@dv@handle@info@block@opt[]}}%}%
 \def\tikz@lib@dv@handle@info@block@opt[#1]#2{%
-  \tikz@main@dv.after visualization({\scope[#1]#2\endscope})%
+  \tikz@main@dv.after visualization({\scope[{#1}]#2\endscope})%
   \tikz@lib@dv@parse@loop
 }%
 \def\tikz@lib@dv@handle@info@prime'{%
   \pgfutil@ifnextchar[{\tikz@lib@dv@handle@info@block@opt@prime}{\tikz@lib@dv@handle@info@block@opt@prime[]}}%}%
 \def\tikz@lib@dv@handle@info@block@opt@prime[#1]#2{%
-  \tikz@main@dv.before visualization({\scope[#1]#2\endscope})%
+  \tikz@main@dv.before visualization({\scope[{#1}]#2\endscope})%
   \tikz@lib@dv@parse@loop
 }%
 

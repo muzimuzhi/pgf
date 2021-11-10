@@ -1029,7 +1029,7 @@
     % Ok, setup the options
     \pgfutil@gobble%
   }{%
-    \pgf@arrows@[#1]% Oops: go back to normal mode
+    \pgf@arrows@[{#1}]% Oops: go back to normal mode
   }%
 }
 
@@ -1107,10 +1107,10 @@
 \def\pgf@arrowsdeclarecombine@star[#1]#2#3#4#5#6#7{\def\pgf@@temp{#1}\ifx\pgf@@temp\pgf@linewidthtext\def\pgf@@temp{+0pt 1}\fi%
   \pgfdeclarearrow{name ={#2}-{#3}, means={#5[sep/.expand once=\pgf@@temp].#6}}}
 \def\pgfarrowsdeclaredouble{\pgfutil@ifnextchar[{\pgf@arrowsdeclaredouble}{\pgf@arrowsdeclaredouble[0pt]}}
-\def\pgf@arrowsdeclaredouble[#1]#2#3#4#5{\pgfarrowsdeclarecombine[#1]{#2}{#3}{#4}{#5}{#4}{#5}}
+\def\pgf@arrowsdeclaredouble[#1]#2#3#4#5{\pgfarrowsdeclarecombine[{#1}]{#2}{#3}{#4}{#5}{#4}{#5}}
 \def\pgfarrowsdeclaretriple{\pgfutil@ifnextchar[{\pgf@arrowsdeclaretriple}{\pgf@arrowsdeclaretriple[0pt]}}
-\def\pgf@arrowsdeclaretriple[#1]#2#3#4#5{ \pgfarrowsdeclarecombine[#1]{pgf@trip@#2}{pgf@trip@#3}{#4}{#5}{#4}{#5}%
-  \pgfarrowsdeclarecombine[#1]{#2}{#3}{pgf@trip@#2}{pgf@trip@#3}{#4}{#5}}
+\def\pgf@arrowsdeclaretriple[#1]#2#3#4#5{ \pgfarrowsdeclarecombine[{#1}]{pgf@trip@#2}{pgf@trip@#3}{#4}{#5}{#4}{#5}%
+  \pgfarrowsdeclarecombine[{#1}]{#2}{#3}{pgf@trip@#2}{pgf@trip@#3}{#4}{#5}}
 \def\pgf@linewidthtext{\pgflinewidth}
 
 \pgfarrowsdeclare{stealth}{stealth}
