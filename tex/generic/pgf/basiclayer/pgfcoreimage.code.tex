@@ -195,7 +195,7 @@
     \ifx\pgf@temp\pgfutil@empty%
     \edef#3{#3!}%
     \else%
-    \pgf@@tryextensions[{#2}]{#3}%
+    \pgf@@tryextensions[#2]{#3}%
     \fi}%
   {\edef#3{#3#1!#2}}}
 
