@@ -175,42 +175,56 @@
     %
     \pgfset{/pgf/data/continue code=\tikz@lib@dv@parse@loop}%
     % Now enter parse loop
+    \tikz@resetexpandcount
     \tikz@lib@dv@parse@loop
 }%
 
 \def\tikz@lib@dv@parse@loop{%
-  \pgfutil@ifnextchar d\tikz@lib@dv@handle@data{%
-    \pgfutil@ifnextchar ;\tikz@lib@dv@parse@end{%
-      \pgfutil@ifnextchar \par\tikz@lib@dv@handle@par{%
-        \pgfutil@ifnextchar s\tikz@lib@dv@handle@beginscope{%
-          \pgfutil@ifnextchar i\tikz@lib@dv@handle@info{%
-            \pgfutil@ifnextchar [\tikz@lib@dv@handle@options{%
-              \pgfutil@ifnextchar \egroup\tikz@lib@dv@handle@endscope{%
-                \tikzerror{Semicolon expected}%
-                \endgroup%
-              }%
-            }%
-          }%
-        }%
-      }%
-    }%
+  \afterassignment\tikz@lib@dv@parse@@loop\let\pgf@let@token=%
+}
+
+\def\tikz@lib@dv@parse@@loop{%
+  \pgfutil@switch\pgfutil@ifx\pgf@let@token{%
+    {d}      {\let\pgfutil@next\tikz@lib@dv@handle@data}%
+    {;}      {\let\pgfutil@next\tikz@lib@dv@parse@end}%
+    {\par}   {\let\pgfutil@next\tikz@lib@dv@handle@par}%
+    {s}      {\let\pgfutil@next\tikz@lib@dv@handle@beginscope}%
+    {i}      {\let\pgfutil@next\tikz@lib@dv@handle@info}%
+    {[}      {\let\pgfutil@next\tikz@lib@dv@handle@options}%]
+    {\egroup}{\let\pgfutil@next\tikz@lib@dv@handle@endscope}%
+  }{\tikz@resetexpandcount\pgfutil@next}{\tikz@lib@dv@expand}%
+}
+
+\def\tikz@lib@dv@expand{%
+  % \pgferror{\meaning\pgf@let@token}%
+  \advance\tikz@expandcount by -10 % go down quickly
+  \ifnum\tikz@expandcount<0\relax%
+    \expandafter\pgfutil@firstoftwo
+  \else
+    \expandafter\pgfutil@secondoftwo
+  \fi
+  {%
+    \tikzerror{Semicolon expected}%
+    \endgroup%
+  }{%
+    \expandafter\tikz@lib@dv@parse@loop\pgf@let@token
   }%
 }%
-\def\tikz@lib@dv@parse@end;{%
+\def\tikz@lib@dv@parse@end{%
     % Go!
     \tikz@main@dv.survey()%
     \tikz@main@dv.visualize()%
   \endgroup%
   \tikz@path@do@at@end%
 }%
-\def\tikz@lib@dv@handle@par\par{\tikz@lib@dv@parse@loop}%
+\def\tikz@lib@dv@handle@par{\tikz@lib@dv@parse@loop}%
 
-\def\tikz@lib@dv@handle@options[#1]{%
+\def\tikz@lib@dv@handle@options#1]{%
   \tikzdatavisualizationset{#1}%
   \tikz@lib@dv@parse@loop%
 }%
 
-\def\tikz@lib@dv@handle@beginscope scope{%
+\def\tikz@lib@dv@handle@beginscope cope{%
   \begingroup%
     \pgfutil@ifnextchar[\tikz@lib@dv@beg@opt{\tikz@lib@dv@beg@opt[]}%}
 }%
@@ -228,11 +242,10 @@
 \def\tikz@lib@dv@handle@endscope{%
     \pgf@dv@do@adddata{\pgfkeysvalueof{/pgf/data visualization/obj}.add data(\endgroup)}%
   \endgroup%
-  \afterassignment\tikz@lib@dv@parse@loop%
-  \let\tikz@dummy=%get rid of \egroup
+  \tikz@lib@dv@parse@loop%
 }%
 
-\def\tikz@lib@dv@handle@data data{%
+\def\tikz@lib@dv@handle@data ata{%
   \pgfutil@ifnextchar g{\tikz@lib@dv@handle@data@group}{%
     \pgfutil@ifnextchar p{\tikz@lib@dv@handle@data@point}{%
       \pgfdata}}}%
@@ -272,7 +285,7 @@
   \tikz@lib@dv@parse@loop%
 }%
 
-\def\tikz@lib@dv@handle@info info{%
+\def\tikz@lib@dv@handle@info nfo{%
   \pgfutil@ifnextchar'{\tikz@lib@dv@handle@info@prime}{\tikz@lib@dv@handle@info@noprime}}%
 \def\tikz@lib@dv@handle@info@noprime{%
   \pgfutil@ifnextchar[{\tikz@lib@dv@handle@info@block@opt}{\tikz@lib@dv@handle@info@block@opt[]}}%}%
