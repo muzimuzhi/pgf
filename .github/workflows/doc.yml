@@ -31,7 +31,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: pgfmanual-aux
-        path: build/doc/pgfmanual.*
+        path: |
+          build/doc/pgfmanual.*
+          !**/pgfmanual.tex
 
     - uses: actions/upload-artifact@v2
       with:
