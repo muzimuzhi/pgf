@@ -26,6 +26,13 @@ jobs:
       run: |
         l3build doc -q
 
+    - name: Archive pdf & aux
+      if: failure()
+      uses: actions/upload-artifact@v2
+      with:
+        name: pgfmanual-aux
+        path: build/doc/pgfmanual.*
+
     - uses: actions/upload-artifact@v2
       with:
         name: pgfmanual
