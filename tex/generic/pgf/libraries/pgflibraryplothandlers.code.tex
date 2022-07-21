@@ -964,7 +964,16 @@
 %
 % \pgfuseplotmark{*}
 
-\def\pgfuseplotmark#1{\csname pgf@plot@mark@#1\endcsname}%
+\def\pgfuseplotmark#1{%
+  \ifcsname pgf@plot@mark@#1\endcsname
+    \csname pgf@plot@mark@#1\endcsname
+  \else
+    \pgferror{Unknown plot mark '#1'}%
+    % Otherwise a simple
+    %  \draw plot[mark=unknown] (0,0);
+    % will throw two dozens of errors.
+    \global\expandafter\let\csname pgf@plot@mark@#1\endcsname\relax
+  \fi}
 
 
 % A stroke-filled circle mark

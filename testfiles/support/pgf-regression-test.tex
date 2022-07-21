@@ -38,4 +38,10 @@
   \ENDTEST
 }
 
+% normalize error messages across different check engines
+\catcode`\@=11\relax
+\def\pgfutil@packageerror#1#2#3{\TYPE{Package #1 Error: #2.}}
+\def\pgfutil@packagewarning#1#2{\TYPE{Package #1 Warning: #2.}}
+\catcode`\@=12\relax
+
 \TIMO

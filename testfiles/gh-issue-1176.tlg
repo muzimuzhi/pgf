@@ -1,0 +1,16 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+============================================================
+Each kind of unknown plot marks should throw one and only one error
+============================================================
+============================================================
+TEST 1: pgf layer
+============================================================
+Package pgf Error: Unknown plot mark 'pentagon'.
+============================================================
+============================================================
+TEST 2: tikz layer
+============================================================
+Package pgf Error: Unknown plot mark 'o'.
+Package pgf Error: Unknown plot mark 'unknown'.
+============================================================

@@ -1,0 +1,34 @@
+\documentclass{minimal}
+\RequirePackage{tikz}
+
+\input{pgf-regression-test} % to make error message normalizations take effect
+
+\begin{document}
+
+\START
+\SEPARATOR
+\TYPE{Each kind of unknown plot marks should throw one and only one error}
+\SEPARATOR
+
+\BEGINTEST{pgf layer}
+\begin{pgfpicture}
+  % \draw[gray] (0,0) node {x} (1,1) node {y} (2,.5) node {z};
+  \pgfplothandlermark{\pgfuseplotmark{pentagon}}
+  \pgfplotstreamstart
+    \pgfplotstreampoint{\pgfpoint{0cm}{0cm}}
+    \pgfplotstreampoint{\pgfpoint{1cm}{1cm}}
+    \pgfplotstreampoint{\pgfpoint{2cm}{0.5cm}}
+  \pgfplotstreamend
+  \pgfusepath{stroke}
+\end{pgfpicture}
+\ENDTEST
+
+\BEGINTEST{tikz layer}
+\tikz {
+  \draw plot[mark=x] (0,0);
+  \draw plot[mark=o] (1,0); % need libraray `plotmarks`
+  \draw plot[mark=unknown] (2,0);
+}
+\ENDTEST
+
+\END
