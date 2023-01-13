@@ -142,7 +142,7 @@ local function walk(sourcedir, targetdir)
                     local examplefile = io.open(targetdir .. newname, "w")
 
                     examplefile:write"\\documentclass{standalone}\n"
-                    examplefile:write"\\usepackage{fp,pgf,tikz,xcolor}\n"
+                    examplefile:write"\\usepackage{fp,tikz}\n"
                     examplefile:write(options["preamble"] and options["preamble"] .. "\n" or "")
                     examplefile:write"\\begin{document}\n\\START\n"
 
@@ -184,7 +184,7 @@ local function walk(sourcedir, targetdir)
                 local examplefile = io.open(targetdir .. name .. ".lvt", "w")
                 examplefile:write"\\documentclass{minimal}\n"
                 examplefile:write"\\input{pgf-regression-test}\n"
-                examplefile:write"\\RequirePackage{fp,pgf,tikz,xcolor}\n"
+                examplefile:write"\\RequirePackage{fp,tikz}\n"
                 if preamble ~= "" then
                     examplefile:write"\n"
                     examplefile:write(preamble)
