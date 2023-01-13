@@ -5,6 +5,7 @@
 \usetikzlibrary{shapes.geometric}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-trees-1}
 \begin{tikzpicture}

@@ -21,6 +21,7 @@
 \usetikzlibrary{math}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-math-1}
 \tikzmath{

@@ -6,6 +6,7 @@
 \usetikzlibrary{arrows.meta,bending}
 
 \begin{document}
+\START
 
 \makeatletter
     \def\showvalueofmacro#1{%

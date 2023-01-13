@@ -35,6 +35,7 @@
 }
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-patterns-1}
 \pgfdeclarepatternformonly{stars}

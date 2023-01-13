@@ -5,6 +5,7 @@
 \usetikzlibrary{calc,quotes}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-math-parsing-1}
 \muskipdef\mymuskip=0

@@ -25,6 +25,7 @@
 \usetikzlibrary{arrows.meta,graphs,shapes.misc}
 
 \begin{document}
+\START
 
 \tikzset{
   terminal/.style={

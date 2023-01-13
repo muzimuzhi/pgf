@@ -7,6 +7,7 @@
 \usetikzlibrary{angles,quotes}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-pics-2}
 \tikzset{

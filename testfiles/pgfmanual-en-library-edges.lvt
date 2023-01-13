@@ -5,6 +5,7 @@
 \usetikzlibrary{automata,positioning}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-edges-1}
 \tikz {\draw (0,0) to[line to] (1,0);}

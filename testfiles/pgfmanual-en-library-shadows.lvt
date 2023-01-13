@@ -18,6 +18,7 @@
 \usetikzlibrary{shadows}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-shadows-1}
 \tikz [even odd rule]

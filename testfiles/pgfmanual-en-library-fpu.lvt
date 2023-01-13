@@ -12,6 +12,7 @@
 \usetikzlibrary{fpu}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-fpu-1}
 \pgfkeys{/pgf/fpu}

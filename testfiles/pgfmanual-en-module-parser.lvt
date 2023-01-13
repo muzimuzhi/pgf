@@ -7,6 +7,7 @@
 \usepgfmodule{parser}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-module-parser-1}
 \newcount\mycount

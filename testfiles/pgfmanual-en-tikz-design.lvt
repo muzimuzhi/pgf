@@ -6,6 +6,7 @@
 \usetikzlibrary{graphs}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-design-2}
 \tikz \draw[line width=2pt,color=red] (1,0) -- (0,0) -- (0,1) -- cycle;

@@ -6,6 +6,7 @@
 \usetikzlibrary{graphs,rdf}
 
 \begin{document}
+\START
 
 \tikzset {
   dfa/.style        = { semithick, > = To [sep] },

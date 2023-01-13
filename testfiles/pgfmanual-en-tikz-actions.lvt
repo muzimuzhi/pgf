@@ -21,6 +21,7 @@
 \usetikzlibrary{decorations.pathmorphing,shadows}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-actions-3}
 \tikz \fill[color=red!20] (0,0) circle (1ex);

@@ -5,6 +5,7 @@
 \usepgflibrary{svg.path}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-svg-path-1}
 \begin{pgfpicture}

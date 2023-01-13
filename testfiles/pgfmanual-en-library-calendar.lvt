@@ -45,6 +45,7 @@
 \usetikzlibrary{calendar}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-calendar-1}
 \tikz \calendar[dates=2000-01-01 to 2000-01-31,week list];

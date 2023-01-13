@@ -24,6 +24,7 @@
 \usetikzlibrary{calc}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-coordinates-1}
 \begin{tikzpicture}

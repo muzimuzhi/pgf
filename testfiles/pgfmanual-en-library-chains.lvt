@@ -18,6 +18,7 @@
 \usetikzlibrary{chains,scopes}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-chains-1}
 \begin{tikzpicture}[start chain]

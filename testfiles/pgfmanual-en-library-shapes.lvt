@@ -99,6 +99,7 @@
 \usetikzlibrary{shapes.misc}
 
 \begin{document}
+\START
 
 \tikzset{
   shape example/.style= {color      = black!30,

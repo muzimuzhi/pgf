@@ -8,6 +8,7 @@
 \usetikzlibrary{angles,quotes}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tutorial-2}
 We are working on

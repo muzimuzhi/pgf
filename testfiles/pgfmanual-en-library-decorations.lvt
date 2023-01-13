@@ -85,6 +85,7 @@
 \usetikzlibrary{decorations.fractals}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-decorations-1}
 \begin{tikzpicture}

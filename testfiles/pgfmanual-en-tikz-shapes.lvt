@@ -45,6 +45,7 @@
 \usetikzlibrary{quotes}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-shapes-1}
 \tikz \fill [fill=yellow!80!black]

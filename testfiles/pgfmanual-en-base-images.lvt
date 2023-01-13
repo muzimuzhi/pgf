@@ -6,6 +6,7 @@
 \usepackage{xxcolor}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-images-2}
 \pgfdeclareimage[interpolate=true,width=1cm,height=1cm]

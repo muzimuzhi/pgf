@@ -58,6 +58,7 @@
 \usetikzlibrary{decorations.pathmorphing}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-decorations-1}
 \begin{tikzpicture}[thick]

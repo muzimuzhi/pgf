@@ -8,6 +8,7 @@
 \usetikzlibrary{backgrounds}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-scopes-1}
 $A \mathbin{\tikz[baseline] \draw[->>] (0pt,.5ex) -- (3ex,.5ex);} B$

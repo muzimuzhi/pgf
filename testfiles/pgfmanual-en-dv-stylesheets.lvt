@@ -94,6 +94,7 @@
 \usetikzlibrary{datavisualization}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-dv-stylesheets-1}
 \tikz \datavisualization data group {function classes} = {

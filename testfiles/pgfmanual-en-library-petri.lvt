@@ -17,6 +17,7 @@
 \usetikzlibrary{petri}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-petri-1}
 \begin{tikzpicture}

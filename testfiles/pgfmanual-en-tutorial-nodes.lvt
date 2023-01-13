@@ -23,6 +23,7 @@
 \usetikzlibrary{arrows.meta,petri,positioning}
 
 \begin{document}
+\START
 
 \tikzset{
     place/.style={circle,draw=blue!50,fill=blue!20,thick,

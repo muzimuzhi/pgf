@@ -19,6 +19,7 @@
 \usetikzlibrary{perspective}
 
 \begin{document}
+\START
 
 \newcommand\simplecuboid[3]{%
   \fill[gray!80!white] (tpp cs:x=0,y=0,z=#3)

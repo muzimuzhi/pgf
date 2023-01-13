@@ -10,6 +10,7 @@
 \usetikzlibrary{lindenmayersystems}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-lsystems-1}
 \expandafter\let\csname pgf@lsystem@Koch curve\endcsname=\relax

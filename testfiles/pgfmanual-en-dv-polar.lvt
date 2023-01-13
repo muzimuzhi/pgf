@@ -33,6 +33,7 @@
 \usetikzlibrary{datavisualization.polar}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-dv-polar-1}
 \tikz \datavisualization [

@@ -18,6 +18,7 @@
 \usetikzlibrary{matrix}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-matrices-1}
 \begin{tikzpicture}

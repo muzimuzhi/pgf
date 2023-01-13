@@ -16,6 +16,7 @@
 \usetikzlibrary{backgrounds}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-backgrounds-1}
 \begin{tikzpicture}

@@ -5,6 +5,7 @@
 \usepgflibrary{fixedpointarithmetic}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-fixedpoint-1}
 \begin{tikzpicture}[fixed point arithmetic={scale results=10^-6}]

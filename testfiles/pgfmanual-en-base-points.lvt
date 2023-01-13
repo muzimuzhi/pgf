@@ -5,6 +5,7 @@
 \usetikzlibrary{intersections}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-points-1}
 \begin{tikzpicture}

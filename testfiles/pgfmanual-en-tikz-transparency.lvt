@@ -20,6 +20,7 @@
 \usetikzlibrary{patterns,shapes.symbols}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-transparency-1}
 \begin{tikzpicture}[line width=1ex]

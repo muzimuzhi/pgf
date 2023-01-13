@@ -8,6 +8,7 @@
 \usepgflibrary{arrows.meta}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-actions-1}
 \begin{pgfpicture}

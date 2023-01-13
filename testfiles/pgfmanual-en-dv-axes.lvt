@@ -83,6 +83,7 @@
 \usetikzlibrary{datavisualization}
 
 \begin{document}
+\START
 
 \tikz \datavisualization data group {people and money} = {
     data [set=people 1] {

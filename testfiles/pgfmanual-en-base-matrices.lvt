@@ -2,6 +2,7 @@
 \input{pgf-regression-test}
 \RequirePackage{fp,pgf,tikz,xcolor}
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-matrices-1}
 \begin{tikzpicture}[x=3mm,y=3mm,fill=blue!50]

@@ -93,6 +93,7 @@
 \usetikzlibrary{arrows.meta,bending}
 
 \begin{document}
+\START
 
 \usetikzlibrary{patterns}
 \def\wall{ \fill     [fill=black!50]  (1,-.5) rectangle (2,.5);

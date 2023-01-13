@@ -12,6 +12,7 @@
 \usetikzlibrary{arrows.meta,automata,positioning}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-automata-1}
 \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]

@@ -2,6 +2,7 @@
 \input{pgf-regression-test}
 \RequirePackage{fp,pgf,tikz,xcolor}
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-plots-6}
 \begin{tikzpicture}[x=3.8cm/360]

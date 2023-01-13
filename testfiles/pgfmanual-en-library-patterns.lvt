@@ -12,6 +12,7 @@
 \usetikzlibrary{patterns.meta}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-patterns-1}
 \pgfdeclarepattern{

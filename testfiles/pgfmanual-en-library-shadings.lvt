@@ -15,6 +15,7 @@
 \usepgflibrary{shadings}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-shadings-1}
 \tikz \draw[top color=red] (0,0) rectangle (2,1);

@@ -5,6 +5,7 @@
 \usetikzlibrary{through}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-through-1}
 \begin{tikzpicture}

@@ -70,6 +70,7 @@
 \usetikzlibrary{circuits.ee.IEC}
 
 \begin{document}
+\START
 
 \tikzset{
   % from `shape` library

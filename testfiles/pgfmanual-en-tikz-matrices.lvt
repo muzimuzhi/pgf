@@ -9,6 +9,7 @@
 \usetikzlibrary{arrows,shapes.geometric}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-matrices-1}
 \begin{tikzpicture}

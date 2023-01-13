@@ -89,6 +89,7 @@
 \usetikzlibrary{animations}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-animations-1}
 \begin{tikzpicture}[

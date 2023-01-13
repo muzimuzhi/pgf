@@ -6,6 +6,7 @@
 \usetikzlibrary{graphs}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-pgfkeys-2}
 \pgfkeys{/my key/.code=The value is '#1'.}

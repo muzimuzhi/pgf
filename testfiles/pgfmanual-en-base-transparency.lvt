@@ -12,6 +12,7 @@
 \usetikzlibrary{shapes.symbols}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-transparency-1}
 \begin{pgfpicture}

@@ -10,6 +10,7 @@
 \usetikzlibrary{angles}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-angles-1}
 \tikz \draw (2,0) coordinate (A) -- (0,0) coordinate (B)

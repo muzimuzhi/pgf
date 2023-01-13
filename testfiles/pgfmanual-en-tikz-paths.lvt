@@ -11,6 +11,7 @@
 \usetikzlibrary{intersections}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tikz-paths-1}
 \tikz \draw (0,0) -- (1,1)

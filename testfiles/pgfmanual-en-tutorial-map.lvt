@@ -16,6 +16,7 @@
 \usetikzlibrary{calendar}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tutorial-map-1}
 \tikz

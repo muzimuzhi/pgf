@@ -8,6 +8,7 @@
 \usetikzlibrary{fpu}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-math-numberprinting-1}
 \pgfkeys{/pgf/number format/.cd,fixed,precision=2}

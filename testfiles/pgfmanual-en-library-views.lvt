@@ -8,6 +8,7 @@
 \usetikzlibrary{animations,views}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-views-1}
 \tikz {

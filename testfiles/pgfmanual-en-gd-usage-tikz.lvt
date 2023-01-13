@@ -30,6 +30,7 @@
 \usegdlibrary{trees}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-gd-usage-tikz-3}
 \tikz [rounded corners]

@@ -18,6 +18,7 @@
 \usetikzlibrary{curvilinear}
 
 \begin{document}
+\START
 
 \makeatletter
 \def\polartransformation{

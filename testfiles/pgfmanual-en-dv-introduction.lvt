@@ -6,6 +6,7 @@
 \usetikzlibrary{datavisualization.formats.functions}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-dv-introduction-1}
 \begin{tikzpicture}[scale=.7]

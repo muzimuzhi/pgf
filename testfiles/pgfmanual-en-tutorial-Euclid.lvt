@@ -18,6 +18,7 @@
 \usetikzlibrary{calc,intersections,through}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-tutorial-Euclid-4}
 \begin{tikzpicture}

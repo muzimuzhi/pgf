@@ -14,6 +14,7 @@
 \usetikzlibrary{decorations,decorations.pathmorphing}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-base-decorations-1}
 \tikz \draw decorate[decoration=zigzag] {(0,0) -- (3,0)};

@@ -11,6 +11,7 @@
 \usetikzlibrary{trees}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-trees-1}
 \begin{tikzpicture}[grow via three points={%

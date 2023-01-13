@@ -15,6 +15,7 @@
 \usetikzlibrary{decorations.fractals,shadows,shapes.symbols,spy}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-spy-1}
 \begin{tikzpicture}

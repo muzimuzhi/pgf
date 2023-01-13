@@ -11,6 +11,7 @@
 \usetikzlibrary{er}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-er-1}
 \begin{tikzpicture}

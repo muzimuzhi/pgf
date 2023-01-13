@@ -1,7 +1,18 @@
 \documentclass{minimal}
 \input{pgf-regression-test}
 \RequirePackage{fp,pgf,tikz,xcolor}
+
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+\usepgfkeyslibrary{filtered}
+
 \begin{document}
+\START
 
 \pgfkeys{
     /my group/A1/.code=(A1:#1),

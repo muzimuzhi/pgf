@@ -144,7 +144,7 @@ local function walk(sourcedir, targetdir)
                     examplefile:write"\\documentclass{standalone}\n"
                     examplefile:write"\\usepackage{fp,pgf,tikz,xcolor}\n"
                     examplefile:write(options["preamble"] and options["preamble"] .. "\n" or "")
-                    examplefile:write"\\begin{document}\n"
+                    examplefile:write"\\begin{document}\n\\START\n"
 
                     examplefile:write(setup_code)
                     local pre = options["pre"] or ""
@@ -190,7 +190,7 @@ local function walk(sourcedir, targetdir)
                     examplefile:write(preamble)
                     examplefile:write"\n"
                 end
-                examplefile:write"\\begin{document}\n\n"
+                examplefile:write"\\begin{document}\n\\START\n\n"
                 if setup_code ~= "" then
                     examplefile:write(setup_code)
                     examplefile:write"\n"

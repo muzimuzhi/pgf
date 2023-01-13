@@ -22,6 +22,7 @@
 \usetikzlibrary{folding}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-folding-1}
 \sffamily\scriptsize

@@ -8,6 +8,7 @@
 \usetikzlibrary{turtle}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-turtle-1}
 \tikz[turtle/distance=2mm]

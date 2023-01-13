@@ -20,6 +20,7 @@
 \usetikzlibrary{mindmap}
 
 \begin{document}
+\START
 
 \BEGINBOXTEST{pgfmanual-en-library-mindmaps-1}
 \tikz[mindmap,concept color=red!50]
