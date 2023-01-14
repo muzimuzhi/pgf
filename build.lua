@@ -47,6 +47,7 @@ checkconfigs = { "build", "config-gd" }
 maxprintline = 9999
 
 -- For release
+ctanupload = true
 ctanzip = "pgf.ctan.flatdir"
 packtdszip = true
 
