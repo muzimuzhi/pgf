@@ -13,6 +13,7 @@ docfiles =
   {
     "RELEASE_NOTES.md", "description.html", -- Part of the release script
     "color.cfg", "pgfmanual.cfg", "images/*.jpg", "*.tex" -- Build the PDF
+    , "xcolor.sty" -- test for color expr operators other than `!`
   }
 tdsroot = "generic"
 typesetfiles = {"pgfmanual.tex"}
