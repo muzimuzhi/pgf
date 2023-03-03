@@ -79,6 +79,8 @@
 \def\c@lor@error#1%
  {\ifcolorerrors@\PackageError{xcolor}{Undefined color #1}\@ehc
   \else\PackageWarning{xcolor}{Undefined color #1}\fi}
+\def\XC@operator#1{%
+  \PackageError{xcolor}{Color expr operator ``\detokenize{#1}''}{}}
 \def\XC@append#1#2%
  {\ifx#1\@undefined\def#1{#2}\else\ifx#1\relax\def#1{#2}\else
   \toks@\expandafter{#1#2}\edef#1{\the\toks@}\fi\fi}
@@ -890,7 +892,7 @@
 \def\XC@split@i#1>%
  {\def\@@tmp{#1}\XC@split@ii#1:\@nil \XC@func}
 \def\XC@split@ii#1:#2\@nil
- {\@ifxempty{#2}{\XC@split@vi}{\XC@split@iii#1,,:#2}}
+ {\@ifxempty{#2}{\XC@split@vi}{\XC@operator{>}\XC@split@iii#1,,:#2}}
 \def\XC@split@iii#1,#2,#3:#4:%
  {\edef\XC@@mod{#1}\let\@tempa\@empty
   \ifx,#2,\XC@@tsttrue\@tempdima\z@\else\XC@@tstfalse\@tempdima#2\p@\fi
@@ -899,7 +901,7 @@
  {\@ifxempty{#1}%
    {\let\XC@@clr\@empty \@tempa \expandafter\XC@calc@\XC@@clr,,,,:U%
     \let\@@mod\XC@@mod \let\@@clr\@@tmp}
-   {\XC@append\@tempa{\XC@split@v{#1}{#2}}%
+   {\XC@operator{,}\XC@append\@tempa{\XC@split@v{#1}{#2}}%
     \ifXC@@tst\advance\@tempdima#2\p@\fi
     \XC@split@iv}}
 \def\XC@split@v#1#2%
@@ -916,7 +918,7 @@
   \fi}
 \def\XC@split@vi{\count@\z@ \expandafter\XC@split@vii\@@tmp!\@nil}
 \def\XC@split@vii#1%
- {\ifx#1-\advance\count@\@ne\expandafter\XC@split@vii
+ {\ifx#1-\XC@operator{-}\advance\count@\@ne\expandafter\XC@split@vii
   \else\expandafter\XC@split@viii\expandafter#1\fi}
 \def\XC@split@viii#1!#2\@nil
  {\edef\@@nam{#1}\edef\@@mix{#2}%
