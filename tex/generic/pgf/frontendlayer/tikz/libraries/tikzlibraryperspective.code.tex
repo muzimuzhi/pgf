@@ -29,13 +29,13 @@
 
 \def\pgfpointperspectivexyz#1#2#3{%
   \pgfmathsetmacro\pgf@pp@w%
-    { \pgf@H@tpp@da*(#1) + \pgf@H@tpp@db*(#2) + \pgf@H@tpp@dc*(#3) + 1}
+    { \pgf@H@tpp@da*(#1) + \pgf@H@tpp@db*(#2) + \pgf@H@tpp@dc*(#3) + 1}%
   \pgfmathsetmacro\pgf@pp@x%
-    {(\pgf@H@tpp@aa*(#1) + \pgf@H@tpp@ab*(#2) + \pgf@H@tpp@ac*(#3))/\pgf@pp@w}
+    {(\pgf@H@tpp@aa*(#1) + \pgf@H@tpp@ab*(#2) + \pgf@H@tpp@ac*(#3))/\pgf@pp@w}%
   \pgfmathsetmacro\pgf@pp@y%
-    {(\pgf@H@tpp@ba*(#1) + \pgf@H@tpp@bb*(#2) + \pgf@H@tpp@bc*(#3))/\pgf@pp@w}
+    {(\pgf@H@tpp@ba*(#1) + \pgf@H@tpp@bb*(#2) + \pgf@H@tpp@bc*(#3))/\pgf@pp@w}%
   \pgfmathsetmacro\pgf@pp@z%
-    {(\pgf@H@tpp@ca*(#1) + \pgf@H@tpp@cb*(#2) + \pgf@H@tpp@cc*(#3))/\pgf@pp@w}
+    {(\pgf@H@tpp@ca*(#1) + \pgf@H@tpp@cb*(#2) + \pgf@H@tpp@cc*(#3))/\pgf@pp@w}%
 %
   \pgf@x=\pgf@pp@x\pgf@xx%
   \advance\pgf@x by \pgf@pp@y\pgf@yx%
@@ -47,34 +47,34 @@
 \tikzdeclarecoordinatesystem{three point perspective}
 {%
   \tikzset{cs/.cd,x=0,y=0,z=0,#1}%
-  \pgfpointperspectivexyz{\tikz@cs@x}{\tikz@cs@y}{\tikz@cs@z}
+  \pgfpointperspectivexyz{\tikz@cs@x}{\tikz@cs@y}{\tikz@cs@z}%
 }
 \tikzaliascoordinatesystem{tpp}{three point perspective}
 
 \pgfkeys{
   /perspective/.cd,
-    p/.code args={(#1,#2,#3)}{
-      \pgfmathparse{ifthenelse(#1,int(1),int(0))}
+    p/.code args={(#1,#2,#3)}{%
+      \pgfmathparse{ifthenelse(#1,int(1),int(0))}%
       \ifnum\pgfmathresult=0\else
-        \pgfmathsetmacro\pgf@H@tpp@ba{#2/#1}
-        \pgfmathsetmacro\pgf@H@tpp@ca{#3/#1}
-        \pgfmathsetmacro\pgf@H@tpp@da{ 1/#1}
+        \pgfmathsetmacro\pgf@H@tpp@ba{#2/#1}%
+        \pgfmathsetmacro\pgf@H@tpp@ca{#3/#1}%
+        \pgfmathsetmacro\pgf@H@tpp@da{ 1/#1}%
       \fi
     },
-    q/.code args={(#1,#2,#3)}{
-      \pgfmathparse{ifthenelse(#2,int(1),int(0))}
+    q/.code args={(#1,#2,#3)}{%
+      \pgfmathparse{ifthenelse(#2,int(1),int(0))}%
       \ifnum\pgfmathresult=0\else
-        \pgfmathsetmacro\pgf@H@tpp@ab{#1/#2}
-        \pgfmathsetmacro\pgf@H@tpp@cb{#3/#2}
-        \pgfmathsetmacro\pgf@H@tpp@db{ 1/#2}
+        \pgfmathsetmacro\pgf@H@tpp@ab{#1/#2}%
+        \pgfmathsetmacro\pgf@H@tpp@cb{#3/#2}%
+        \pgfmathsetmacro\pgf@H@tpp@db{ 1/#2}%
       \fi
     },
-    r/.code args={(#1,#2,#3)}{
-      \pgfmathparse{ifthenelse(#3,int(1),int(0))}
+    r/.code args={(#1,#2,#3)}{%
+      \pgfmathparse{ifthenelse(#3,int(1),int(0))}%
       \ifnum\pgfmathresult=0\else
-        \pgfmathsetmacro\pgf@H@tpp@ac{#1/#3}
-        \pgfmathsetmacro\pgf@H@tpp@bc{#2/#3}
-        \pgfmathsetmacro\pgf@H@tpp@dc{ 1/#3}
+        \pgfmathsetmacro\pgf@H@tpp@ac{#1/#3}%
+        \pgfmathsetmacro\pgf@H@tpp@bc{#2/#3}%
+        \pgfmathsetmacro\pgf@H@tpp@dc{ 1/#3}%
       \fi
     },
 }

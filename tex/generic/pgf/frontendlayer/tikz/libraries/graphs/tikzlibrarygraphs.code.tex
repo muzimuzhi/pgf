@@ -320,7 +320,7 @@
 % Parse a group
 %
 
-\long\def\tikz@lib@graph@parse@group#1{
+\long\def\tikz@lib@graph@parse@group#1{%
   \let\tikz@lib@graph@group@qa\pgfutil@empty%
   \let\tikz@lib@graph@group@q\pgfutil@empty%
   \let\tikz@lib@graph@group@c\pgfutil@empty%
@@ -664,7 +664,7 @@
 }%
 
 \def\tikz@lib@graph@@node#1<#2\pgf@stop%
-{
+{%
   %
   % #1 will be a node (not a group)
   %
@@ -734,8 +734,8 @@
   %
   % Ok, first recolor
   %
-  \tikzgraphinvokeoperator{recolor source by=source''}
-  \tikzgraphinvokeoperator{recolor target by=target'}
+  \tikzgraphinvokeoperator{recolor source by=source''}%
+  \tikzgraphinvokeoperator{recolor target by=target'}%
   % Save action for next node
   \expandafter\def\expandafter\tikz@lib@graph@stored@actions\expandafter{%
     \expandafter\tikz@lib@graph@joiner\expandafter{\tikz@lib@graph@arrow@type}{#1}}%
@@ -745,8 +745,8 @@
 }%
 
 \def\tikz@lib@graph@joiner#1#2{%
-  \tikzgraphinvokeoperator{recolor source by=source'}
-  \tikzgraphinvokeoperator{recolor source'' by=source}
+  \tikzgraphinvokeoperator{recolor source by=source'}%
+  \tikzgraphinvokeoperator{recolor source'' by=source}%
   {%
     \tikz@enable@edge@quotes%
     \pgfkeyssetvalue{/tikz/graphs/default edge kind}{#1}%
@@ -760,19 +760,19 @@
     \fi%
     \pgf@temp%
   }%
-  \tikzgraphinvokeoperator{not source',not target'}
+  \tikzgraphinvokeoperator{not source',not target'}%
 }%
 
 \def\tikz@lib@graph@unknown@edge@option#1{%
-  \def\tikz@temp{/tikz/graphs/@edges styling/.append=}
+  \def\tikz@temp{/tikz/graphs/@edges styling/.append=}%
   \expandafter\expandafter\expandafter\pgfkeys%
-  \expandafter\expandafter\expandafter{\expandafter\tikz@temp\expandafter{\expandafter,\pgfkeyscurrentname={#1}}}
+  \expandafter\expandafter\expandafter{\expandafter\tikz@temp\expandafter{\expandafter,\pgfkeyscurrentname={#1}}}%
 }%
 
 \def\tikz@lib@graph@graph@done\pgf@stop@eodashes{%
     % Get local depth and width outside
-    \xdef\tikz@lib@graph@chain@depth{\pgfkeysvalueof{/tikz/graphs/placement/local depth}}
-    \xdef\tikz@lib@graph@chain@width{\pgfkeysvalueof{/tikz/graphs/placement/local width}}
+    \xdef\tikz@lib@graph@chain@depth{\pgfkeysvalueof{/tikz/graphs/placement/local depth}}%
+    \xdef\tikz@lib@graph@chain@width{\pgfkeysvalueof{/tikz/graphs/placement/local width}}%
     % Get node list outside...
     \expandafter%
   \endgroup%
@@ -883,7 +883,7 @@
 % Parse the normal part of a node (name and, possibly, text after slash)
 %
 
-\def\tikz@lib@parse@normal@node#1[{
+\def\tikz@lib@parse@normal@node#1[{%
   %
   % Test whether #1 contains "/" or "__"
   %
@@ -1297,9 +1297,9 @@
   % Is #1 the name of a node set?
   \expandafter\let\expandafter\pgf@temp\csname tikz@lg@node@set #1\endcsname
   \ifx\pgf@temp\relax
-    \pgfutil@g@addto@macro\tikz@lg@temp{\tikz@lg@do{#1}}
+    \pgfutil@g@addto@macro\tikz@lg@temp{\tikz@lg@do{#1}}%
   \else%
-    \expandafter\pgfutil@g@addto@macro\expandafter\tikz@lg@temp\expandafter{\pgf@temp}
+    \expandafter\pgfutil@g@addto@macro\expandafter\tikz@lg@temp\expandafter{\pgf@temp}%
   \fi
 }%
 
@@ -1544,7 +1544,7 @@
   \expandafter\ifx\csname tikz@lg@p@#1\endcsname\pgf@stop%
   \else%
     \expandafter\let\csname tikz@lg@p@#1\endcsname\pgf@stop%
-    \expandafter\def\expandafter\tikz@lg@packed\expandafter{\tikz@lg@packed\tikz@lg@do{#1}}
+    \expandafter\def\expandafter\tikz@lg@packed\expandafter{\tikz@lg@packed\tikz@lg@do{#1}}%
   \fi
 }%
 
@@ -1570,7 +1570,7 @@
   \let\tikz@lg@do\tikz@lg@pick%
   \tikz@lib@graph@node@list%
 }%
-\def\tikz@lg@pick#1{
+\def\tikz@lg@pick#1{%
   {%
     \csname tikz@lgc@#1\endcsname%
     \iftikz@lib@graph@color@picker
@@ -1816,7 +1816,7 @@
 \tikzgraphsset{
   matching and star/.style 2 args={operator=%
     {%
-      \tikzgraphpreparecolor{#1}\c@pgf@counta{tikz@lg}
+      \tikzgraphpreparecolor{#1}\c@pgf@counta{tikz@lg}%
       \c@pgf@countb=0\relax%
       \let\tikz@lg@prev\relax
       \tikzgraphforeachcolorednode{#2}\tikz@lib@graph@flow@do%
@@ -1856,7 +1856,7 @@
 \tikzgraphsset{
   matching/.style 2 args={operator=
     {%
-      \tikzgraphpreparecolor{#1}\c@pgf@counta{tikz@lg}
+      \tikzgraphpreparecolor{#1}\c@pgf@counta{tikz@lg}%
       \c@pgf@countb=0\relax%
       \tikzgraphforeachcolorednode{#2}\tikz@lib@graph@matching@do%
     }%
