@@ -13,7 +13,7 @@ jobs:
         fetch-depth: 0
 
     - name: "Check commits"
-      uses: pgf-tikz/actions/dco-check@master
+      uses: muzimuzhi/actions/dco-check@skip-dependabot-commits
       with:
         base_ref: ${{ github.base_ref }}
         allow_co-authored: true
