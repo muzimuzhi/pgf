@@ -126,7 +126,10 @@ jobs:
     - name: Warn if the generated examples changed
       run: |
         if ! git diff --quiet; then
-          echo "::warning::Generated examples are out of date; run 'l3build examples' and commit the result."
+          # setting an error message won't fail the current step
+          message="Generated examples are out of date; run \`l3build examples\` followed by \`l3build save ...\` and commit the result."
+          echo "::error::$message"
+          echo "$message" >> "$GITHUB_STEP_SUMMARY"
           git diff --stat
           git diff > examples.diff
         fi
